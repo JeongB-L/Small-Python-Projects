@@ -53,7 +53,13 @@ def multiply_left_and_right(nums: list[int]) -> list[int]:
         #   multiplied ones from the right side are multiplied to the ones from the left side
         out[i] *= crr
         crr *= nums[i]
-        #   understood the logic, but still don't know why the multiplication of left and right become to the answer
+        #       #   깨달음: multiplying left and right is simple: a1 * a2 * a3 ... ai... * a(i + 1) * ... an
+        #                   left side of the calculation is done in the first step, then the calculation
+        #                   on the other side is done, which is just multiplying them, so that theres no difference
+        #                   between brute forcing and this. 그냥 말 그대로 곱하면 왼쪽은 본인을 제외한 모든 수의 곱이고
+                        #   오른쪽도 마찬가지. cum sum의 개념 사용. 왼쪽 애들로 "만" 곱한거를 나중에 오른쪽 애들로 "만" 곱한걸
+                #           곱해줬을 뿐.  cum sum 으로 2개의 숫자를 이미 곱함 -> 나머지 1개랑 그냥 1 을 곱해줌
+        #   QED
     return out
 
 def test(input):
@@ -67,3 +73,5 @@ if '__main__' == __name__:
     print(my_own_solution1(input))
     print(my_own_solution_with_no_assumption(input))
     print(multiply_left_and_right(input))
+
+
